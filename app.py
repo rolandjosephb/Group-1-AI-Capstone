@@ -4,7 +4,7 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 from query import construct_meal_plan_query, construct_recipe, generate_random_form_data
 from database import create_table, save_meal_plan, get_meal_plans, delete_meal_plan, save_generated_recipe, save_recipe, get_favorite_recipes
-
+from waitress import serve
 
 # API
 load_dotenv()
@@ -132,5 +132,10 @@ def view_favourite_recipes():
     favorite_recipes = get_favorite_recipes()  # Fetch the favorite recipes
     return render_template('view_favourite_recipe.html', favorite_recipes=favorite_recipes)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+    #app.run(debug=True)
+
+
+if __name__ == "__main__":
+    serve(app, host='0.0.0.0', port=5000)
+    #http://127.0.0.1:5000
